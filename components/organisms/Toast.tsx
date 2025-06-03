@@ -1,0 +1,128 @@
+import React, { useState } from "react";
+import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
+import { CheckIcon, XCircleIcon } from "react-native-heroicons/outline";
+
+export type ToastStatus = "success" | "error";
+
+interface ToastProps {
+  show: boolean;
+  status?: ToastStatus;
+  title: string;
+  description?: string;
+  onClose: () => void;
+}
+
+const statusConfig = {
+  success: {
+    icon: <CheckIcon size={24} color="#22c55e" />, // green
+  },
+  error: {
+    icon: <XCircleIcon size={24} color="#ef4444" />, // red
+  },
+};
+
+const Toast: React.FC<ToastProps> = ({
+  show,
+  status = "success",
+  title,
+  description,
+  onClose,
+}) => {
+  const [opacity] = useState(new Animated.Value(show ? 1 : 0));
+
+  React.useEffect(() => {
+    Animated.timing(opacity, {
+      toValue: show ? 1 : 0,
+      duration: show ? 300 : 100,
+      useNativeDriver: true,
+    }).start();
+  }, [show]);
+
+  if (!show) return null;
+
+  return (
+    <Animated.View
+      pointerEvents="box-none"
+      style={[
+        styles.container,
+        { opacity, transform: [{ translateY: show ? 0 : 16 }] },
+      ]}
+      accessibilityLiveRegion="assertive"
+    >
+      <View style={styles.toastPanel}>
+        <View style={styles.iconWrapper}>{statusConfig[status].icon}</View>
+        <View style={styles.textWrapper}>
+          <Text style={styles.title}>{title}</Text>
+          {!!description && (
+            <Text style={styles.description}>{description}</Text>
+          )}
+        </View>
+        <Pressable
+          accessibilityLabel="Close"
+          style={styles.closeButton}
+          onPress={onClose}
+        >
+          <Text style={styles.closeIcon}>×</Text>
+        </Pressable>
+      </View>
+    </Animated.View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 32,
+    alignItems: "center",
+    zIndex: 1000,
+    pointerEvents: "box-none",
+  },
+  toastPanel: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 16,
+    minWidth: 280,
+    maxWidth: 360,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  iconWrapper: {
+    marginTop: 2,
+  },
+  textWrapper: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  title: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#111827",
+  },
+  description: {
+    fontSize: 13,
+    color: "#6b7280",
+    marginTop: 2,
+  },
+  closeButton: {
+    marginLeft: 12,
+    padding: 4,
+    borderRadius: 6,
+    backgroundColor: "#fff",
+    alignSelf: "flex-start",
+  },
+  closeIcon: {
+    fontSize: 20,
+    color: "#9ca3af",
+    fontWeight: "bold",
+    lineHeight: 20,
+  },
+});
+
+export default Toast;
