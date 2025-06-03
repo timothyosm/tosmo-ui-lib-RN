@@ -89,6 +89,8 @@ const styles = StyleSheet.create({
     padding: 16,
     minWidth: 280,
     maxWidth: 360,
+    borderWidth: 1,
+    borderColor: colors.borderStrong,
   },
   iconWrapper: {
     marginTop: 2,
