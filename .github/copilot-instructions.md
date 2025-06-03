@@ -18,6 +18,22 @@ You are generating code for a **React Native Expo (SDK ≥ 50)** app **without**
 
 - Use the alias **`@/`** for root-relative imports.
 
+## Codebase hygiene
+
+**Before making any code changes:**
+
+- Always check all of the following folders to ensure:
+
+  - No duplicate files, components, hooks, or state slices are created.
+  - All existing components, hooks, and state slices are used effectively and reused where possible.
+  - New code should integrate with or extend existing code when appropriate, not duplicate it.
+
+  - `components/` → `atoms/`, `molecules/`, `organisms/`
+  - `screens/`
+  - `store/` (Zustand slices)
+  - `theme/` (design tokens)
+  - `hooks/`
+
 ## Architecture
 
 Follow **Atomic Design** (atoms → molecules → organisms → screens).
