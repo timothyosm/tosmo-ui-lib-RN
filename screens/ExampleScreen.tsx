@@ -12,7 +12,6 @@ import { useCheckboxListExample } from "@/hooks/useCheckboxListExample";
 import { useRadioListExample } from "@/hooks/useRadioListExample";
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CalendarIcon,
   ChartPieIcon,
@@ -150,68 +149,58 @@ const ExampleScreen: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right", "bottom"]}>
-      <Navbar
-        navigation={sidebarNavigation}
-        teams={sidebarTeams}
-        profile={{
-          name: "Tom Cook",
-          avatarUrl:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-          onPress: () => {},
+    <Navbar navigation={sidebarNavigation} style={{ flex: 1 }}>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 16,
+          backgroundColor: "#F3F4F6",
         }}
-        onNotificationPress={() => {}}
+        keyboardShouldPersistTaps="handled"
       >
-        <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 16,
-            backgroundColor: "#F3F4F6",
-          }}
-          keyboardShouldPersistTaps="handled"
-        >
-          <Text style={{ fontSize: 20, fontWeight: "700", marginBottom: 24 }}>
-            UI Component Examples
-          </Text>
-          {/* Input Examples */}
-          <View style={{ width: 320, marginBottom: 32, gap: 12 }}>
-            <Input label="Email" placeholder="you@example.com" />
-            <Input
-              label="Email"
-              placeholder="you@example.com"
-              leftIcon={<EnvelopeIcon color="#9ca3af" size={20} />}
-            />
-            <Input
-              label="Email"
-              placeholder="you@example.com"
-              value="adamwathan"
-              error="Not a valid email address."
-            />
-          </View>
-          {/* Card Example */}
-          <Card
-            header={
-              <Text style={{ fontWeight: "bold", fontSize: 18 }}>Header</Text>
-            }
-            body={<Text>This is the body content of the card.</Text>}
-            footer={<Text style={{ color: "#6B7280" }}>Footer</Text>}
-            style={{ width: 320, marginBottom: 24 }}
+        <Text style={{ fontSize: 20, fontWeight: "700", marginBottom: 24 }}>
+          UI Component Examples
+        </Text>
+        {/* Input Examples */}
+        <View style={{ width: 320, marginBottom: 32, gap: 12 }}>
+          <Input label="Email" placeholder="you@example.com" />
+          <Input
+            label="Email"
+            placeholder="you@example.com"
+            leftIcon={<EnvelopeIcon color="#9ca3af" size={20} />}
           />
-          {/* Badge Examples */}
-          <View
-            style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              gap: 8,
-              marginBottom: 24,
-            }}
-          >
-            <Badge label="Error" color="#ef4444" />
-            <Badge label="Success" color="#22c55e" />
-            <Badge label="Info" color="#3b82f6" />
-          </View>
+          <Input
+            label="Email"
+            placeholder="you@example.com"
+            value="adamwathan"
+            error="Not a valid email address."
+          />
+        </View>
+        {/* Card Example */}
+        <Card
+          header={
+            <Text style={{ fontWeight: "bold", fontSize: 18 }}>Header</Text>
+          }
+          body={<Text>This is the body content of the card.</Text>}
+          footer={<Text style={{ color: "#6B7280" }}>Footer</Text>}
+          style={{ width: 320, marginBottom: 24 }}
+        />
+        {/* Badge Examples */}
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: 8,
+            marginBottom: 24,
+          }}
+        >
+          <Badge label="Error" color="#ef4444" />
+          <Badge label="Success" color="#22c55e" />
+          <Badge label="Info" color="#3b82f6" />
+        </View>
+        <Button size="lg" onPress={() => setDialogVisible(true)}>
           Primary Button
         </Button>
         <Button
