@@ -95,7 +95,6 @@ const Navbar: React.FC<NavbarProps> = ({
       edges={["top", "left", "right", "bottom"]}
     >
       <View style={styles.navbar}>
-        {/* Sidebar overlay for mobile */}
         {open && (
           <TouchableWithoutFeedback onPress={closeSidebar}>
             <View style={styles.overlay} />
@@ -138,7 +137,6 @@ const Navbar: React.FC<NavbarProps> = ({
               />
               <Text style={styles.companyName}>Your Company</Text>
             </View>
-            {/* Only show notification icon if notificationCount > 0 and onNotificationPress is provided */}
             {typeof notificationCount === "number" &&
               notificationCount > 0 &&
               onNotificationPress && (

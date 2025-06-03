@@ -1,4 +1,3 @@
-// A reusable Button atom for React Native Expo using Pressable and react-native-heroicons
 import { lightColors as colors } from "@/theme/colors";
 import { radii } from "@/theme/radii";
 import type { ReactNode } from "react";
@@ -74,7 +73,7 @@ const variantStyles: Record<
   }
 > = {
   filled: {
-    backgroundColor: colors.brandPrimary, // indigo-600
+    backgroundColor: colors.brandPrimary,
     borderWidth: 0,
     borderColor: "transparent",
     textColor: colors.textInverse,
@@ -82,8 +81,8 @@ const variantStyles: Record<
   outline: {
     backgroundColor: colors.surfaceBackground,
     borderWidth: 1,
-    borderColor: colors.borderStrong, // gray-300
-    textColor: colors.textPrimary, // gray-900
+    borderColor: colors.borderStrong,
+    textColor: colors.textPrimary,
   },
 };
 

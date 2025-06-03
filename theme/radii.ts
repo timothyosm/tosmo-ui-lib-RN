@@ -1,6 +1,3 @@
-// Centralised border radius tokens for the app
-// Naming: semantic, purpose-based
-
 export const radii = {
   none: 0,
   xs: 2,
