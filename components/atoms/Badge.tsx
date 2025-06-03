@@ -10,6 +10,24 @@ export type BadgeProps = {
   textStyle?: TextStyle;
 };
 
+/**
+ * Badge atom for displaying a label with a colored dot.
+ *
+ * @remarks
+ * Use to indicate status or category with a color and label.
+ *
+ * @example
+ * ```tsx
+ * <Badge label="Error" color="#ef4444" />
+ * ```
+ *
+ * @param label - The text label to display.
+ * @param color - The color of the dot (defaults to theme danger color).
+ * @param style - Optional container style.
+ * @param textStyle - Optional text style.
+ * @returns A styled badge component.
+ */
+
 const Badge: React.FC<BadgeProps> = ({
   label,
   color = colors.danger,

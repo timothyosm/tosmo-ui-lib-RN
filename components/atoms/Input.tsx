@@ -22,6 +22,29 @@ export type InputProps = {
   inputStyle?: object;
 } & TextInputProps;
 
+/**
+ * Input atom for text entry with optional icons and error display.
+ *
+ * @remarks
+ * Use for all text input fields. Supports error, help text, and icons.
+ *
+ * @example
+ * ```tsx
+ * <Input label="Email" placeholder="you@example.com" />
+ * ```
+ *
+ * @param label - Input label.
+ * @param helpText - Helper text below input.
+ * @param error - Error message.
+ * @param disabled - Disabled state.
+ * @param hiddenLabel - Hide label visually.
+ * @param leftIcon - Icon on the left.
+ * @param rightIcon - Icon on the right.
+ * @param containerStyle - Container style.
+ * @param inputStyle - Input style.
+ * @returns A styled text input component.
+ */
+
 const Input: React.FC<InputProps> = ({
   label,
   helpText,

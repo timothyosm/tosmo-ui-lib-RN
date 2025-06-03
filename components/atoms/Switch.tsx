@@ -10,6 +10,23 @@ interface SwitchProps {
   accessibilityLabel?: string;
 }
 
+/**
+ * CustomSwitch atom for toggling boolean state.
+ *
+ * @remarks
+ * Use for toggling settings or preferences. Visually distinct from native switch.
+ *
+ * @example
+ * ```tsx
+ * <Switch value={enabled} onValueChange={setEnabled} />
+ * ```
+ *
+ * @param value - Current switch value.
+ * @param onValueChange - Callback when toggled.
+ * @param accessibilityLabel - Accessibility label.
+ * @returns A styled switch component.
+ */
+
 const CustomSwitch: React.FC<SwitchProps> = ({
   value,
   onValueChange,

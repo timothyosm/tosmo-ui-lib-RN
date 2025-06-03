@@ -35,6 +35,36 @@ export interface NavbarProps {
   children?: ReactNode;
 }
 
+/**
+ * Navbar organism for displaying a sidebar and top navigation bar.
+ *
+ * @remarks
+ * This component provides a responsive navigation layout with a sidebar (drawer) and a top bar. It supports team navigation, user profile, and notification actions. The sidebar can be toggled open/closed using the hamburger button. The notification bell and profile avatar are conditionally rendered based on props.
+ *
+ * @example
+ * ```tsx
+ * <Navbar
+ *   navigation={navItems}
+ *   teams={teams}
+ *   profile={{ name: 'Jane', avatarUrl: '...', onPress: () => {} }}
+ *   onNotificationPress={() => {}}
+ *   notificationCount={3}
+ * >
+ *   <MainContent />
+ * </Navbar>
+ * ```
+ *
+ * @param navigation - Array of sidebar navigation items. Each item should have a name, icon, and optional count/current/onPress.
+ * @param teams - Optional array of team objects for the sidebar. Each team should have id, name, initial, and optional onPress/current.
+ * @param profile - Optional user profile object. If provided, shows avatar and name in the top bar. Accepts `name`, `avatarUrl`, optional `onPress` and `email`.
+ * @param onNotificationPress - Optional callback invoked when the notification bell is pressed. Only shown if `notificationCount` is a positive number.
+ * @param notificationCount - Optional number of notifications. If > 0, the bell icon and dot are shown.
+ * @param style - Optional style for the root SafeAreaView container.
+ * @param children - React children to render as the main content area.
+ *
+ * @returns The composed navigation layout with sidebar, top bar, and content area.
+ */
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const Navbar: React.FC<NavbarProps> = ({

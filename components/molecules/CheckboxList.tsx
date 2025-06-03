@@ -16,12 +16,35 @@ interface CheckboxListProps {
   label?: string;
 }
 
+/**
+ * CheckboxList molecule for displaying a list of checkboxes.
+ *
+ * @remarks
+ * Use for multi-select lists. Each item can be toggled independently.
+ *
+ * @example
+ * ```tsx
+ * <CheckboxList items={items} onChange={setItems} />
+ * ```
+ *
+ * @param items - List of checkbox items.
+ * @param onChange - Callback when selection changes.
+ * @param label - Optional label for the list.
+ * @returns A styled list of checkboxes.
+ */
+
 const CheckboxList: React.FC<CheckboxListProps> = ({
   items,
   onChange,
   label = "Options",
 }) => {
   const handleToggle = (id: number | string) => {
+    /**
+     * Handles toggling a checkbox item by id.
+     *
+     * @param id - The id of the checkbox item to toggle.
+     * @returns void
+     */
     const updated = items.map((item) =>
       item.id === id ? { ...item, selected: !item.selected } : item
     );

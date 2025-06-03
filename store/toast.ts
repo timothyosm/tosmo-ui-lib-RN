@@ -14,6 +14,18 @@ interface ToastState {
   hideToast: () => void;
 }
 
+/**
+ * Zustand store for toast state and actions.
+ *
+ * @remarks
+ * Provides global toast state and actions for showing/hiding toasts.
+ *
+ * @example
+ * ```ts
+ * const { showToast, hideToast } = useToastStore();
+ * ```
+ */
+
 export const useToastStore = create<ToastState>((set) => ({
   show: false,
   status: "success",

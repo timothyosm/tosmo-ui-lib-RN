@@ -16,6 +16,24 @@ interface RadioListProps {
   label?: string;
 }
 
+/**
+ * RadioList molecule for displaying a list of radio buttons.
+ *
+ * @remarks
+ * Use for single-select lists. Only one item can be selected at a time.
+ *
+ * @example
+ * ```tsx
+ * <RadioList items={items} selectedId={selectedId} onChange={setSelectedId} />
+ * ```
+ *
+ * @param items - List of radio items.
+ * @param selectedId - Currently selected id.
+ * @param onChange - Callback when selection changes.
+ * @param label - Optional label for the list.
+ * @returns A styled list of radio buttons.
+ */
+
 const RadioList: React.FC<RadioListProps> = ({
   items,
   selectedId,

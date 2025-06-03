@@ -1,5 +1,17 @@
 import { create } from "zustand";
 
+/**
+ * Zustand store for dialog state and actions.
+ *
+ * @remarks
+ * Provides global dialog state and actions for showing/hiding dialogs.
+ *
+ * @example
+ * ```ts
+ * const { showDialog, hideDialog } = useDialogStore();
+ * ```
+ */
+
 interface DialogState {
   visible: boolean;
   status?: "success" | "error" | "warning";

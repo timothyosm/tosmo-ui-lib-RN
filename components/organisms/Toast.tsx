@@ -23,6 +23,25 @@ const statusConfig = {
   },
 };
 
+/**
+ * Toast organism for displaying status messages at the bottom of the screen.
+ *
+ * @remarks
+ * Use for global feedback messages. Supports success and error status.
+ *
+ * @example
+ * ```tsx
+ * <Toast show status="success" title="Saved!" onClose={hideToast} />
+ * ```
+ *
+ * @param show - Whether the toast is visible.
+ * @param status - Toast status (success or error).
+ * @param title - Toast title.
+ * @param description - Optional description.
+ * @param onClose - Callback to close the toast.
+ * @returns A styled toast component.
+ */
+
 const Toast: React.FC<ToastProps> = ({
   show,
   status = "success",

@@ -17,6 +17,23 @@ export interface CalendarProps {
   style?: object;
 }
 
+/**
+ * Calendar organism for displaying months and selectable days.
+ *
+ * @remarks
+ * Use for date selection and calendar views. Supports multiple months and highlights today.
+ *
+ * @example
+ * ```tsx
+ * <Calendar months={months} onSelectDate={setDate} />
+ * ```
+ *
+ * @param months - Array of months to display.
+ * @param onSelectDate - Callback when a date is selected.
+ * @param style - Optional style for the calendar.
+ * @returns A styled calendar component.
+ */
+
 const Calendar: React.FC<CalendarProps> = ({ months, onSelectDate, style }) => {
   return (
     <ScrollView

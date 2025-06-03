@@ -12,6 +12,27 @@ import {
   ViewStyle,
 } from "react-native";
 
+/**
+ * Sidebar organism for displaying navigation and teams.
+ *
+ * @remarks
+ * Use for app-wide navigation. Supports navigation items, teams, and user profile.
+ *
+ * @example
+ * ```tsx
+ * <Sidebar navigation={navItems} teams={teams} />
+ * ```
+ *
+ * @param navigation - Navigation items.
+ * @param teams - Optional teams.
+ * @param profile - Optional user profile.
+ * @param style - Optional container style.
+ * @param headerLogoUrl - Optional logo URL.
+ * @param headerLogoAlt - Optional logo alt text.
+ * @param children - Content to render inside sidebar.
+ * @returns A styled sidebar component.
+ */
+
 export type SidebarNavItem = {
   name: string;
   icon: React.ComponentType<any>;
@@ -45,6 +66,12 @@ export interface SidebarProps {
 }
 
 function classNames(...classes: (string | undefined | null | false)[]) {
+  /**
+   * Utility to join class names.
+   *
+   * @param classes - List of class names.
+   * @returns Joined class names string.
+   */
   return classes.filter(Boolean).join(" ");
 }
 

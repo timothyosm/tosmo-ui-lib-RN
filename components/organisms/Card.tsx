@@ -11,7 +11,21 @@ export type CardProps = {
 };
 
 /**
- * A reusable Card container with header, body, and footer slots.
+ * Card organism for displaying content in header, body, and footer slots.
+ *
+ * @remarks
+ * Use for grouping related content. Supports header, body, and footer slots.
+ *
+ * @example
+ * ```tsx
+ * <Card header={<Text>Header</Text>} body={<Text>Body</Text>} />
+ * ```
+ *
+ * @param header - Optional header content.
+ * @param body - Optional body content.
+ * @param footer - Optional footer content.
+ * @param style - Optional container style.
+ * @returns A styled card component.
  */
 export default function Card({ header, body, footer, style }: CardProps) {
   return (

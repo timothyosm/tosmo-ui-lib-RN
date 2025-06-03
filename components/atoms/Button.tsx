@@ -87,6 +87,31 @@ const variantStyles: Record<
   },
 };
 
+/**
+ * Button atom for custom-styled pressable buttons.
+ *
+ * @remarks
+ * Use for all button actions in the app. Supports icons, variants, and custom shapes.
+ *
+ * @example
+ * ```tsx
+ * <Button onPress={() => {}}>Click me</Button>
+ * ```
+ *
+ * @param children - Button content.
+ * @param onPress - Callback for press event.
+ * @param size - Button size (xs, sm, md, lg, xl).
+ * @param variant - Button style variant (filled, outline).
+ * @param shape - Button shape (default, circular).
+ * @param leftIcon - Icon on the left.
+ * @param rightIcon - Icon on the right.
+ * @param disabled - Disabled state.
+ * @param style - Container style.
+ * @param textStyle - Text style.
+ * @param testID - Test identifier.
+ * @returns A styled pressable button component.
+ */
+
 export const Button: React.FC<ButtonProps> = ({
   children,
   onPress,

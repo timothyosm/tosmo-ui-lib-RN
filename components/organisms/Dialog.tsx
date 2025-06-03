@@ -9,6 +9,20 @@ import {
   XCircleIcon,
 } from "react-native-heroicons/outline";
 
+/**
+ * Dialog organism for modal dialogs with actions and status.
+ *
+ * @remarks
+ * Uses Zustand dialog store for state. Supports primary/secondary actions and status icons.
+ *
+ * @example
+ * ```tsx
+ * <Dialog visible title="Confirm" primaryActionLabel="OK" />
+ * ```
+ *
+ * @returns A modal dialog component.
+ */
+
 interface DialogProps {
   visible: boolean;
   title: string;
