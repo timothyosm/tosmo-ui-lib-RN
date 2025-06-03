@@ -1,4 +1,5 @@
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import React from "react";
 import {
   StyleSheet,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 44,
-    borderRadius: 8,
+    borderRadius: radii.md,
     backgroundColor: colors.surfaceBackground,
     paddingHorizontal: 12,
     fontSize: 16,

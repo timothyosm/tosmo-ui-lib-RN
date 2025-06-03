@@ -1,5 +1,6 @@
 import { useDialogStore } from "@/store/dialog";
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import React from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import {
@@ -103,13 +104,13 @@ const styles = StyleSheet.create({
   },
   panel: {
     backgroundColor: colors.surfaceBackground,
-    borderRadius: 16,
+    borderRadius: radii.xl,
     padding: 24,
     width: "85%",
     alignItems: "center",
   },
   iconWrapper: {
-    borderRadius: 999,
+    borderRadius: radii.full,
     padding: 12,
     marginBottom: 16,
   },

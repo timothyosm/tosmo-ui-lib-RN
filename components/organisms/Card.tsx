@@ -1,4 +1,5 @@
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 
@@ -25,7 +26,7 @@ export default function Card({ header, body, footer, style }: CardProps) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.surfaceBackground,
-    borderRadius: 12,
+    borderRadius: radii.lg,
     overflow: "hidden",
   },
   header: {

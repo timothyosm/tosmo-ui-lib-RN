@@ -1,4 +1,5 @@
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CheckIcon } from "react-native-heroicons/solid";
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   radio: {
     width: 24,
     height: 24,
-    borderRadius: 12,
+    borderRadius: radii.full,
     borderWidth: 1,
     borderColor: colors.borderStrong,
     backgroundColor: colors.surfaceBackground,

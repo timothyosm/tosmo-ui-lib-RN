@@ -1,4 +1,5 @@
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import type { ReactNode } from "react";
 import React from "react";
 import {
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
   navItem: {
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: radii.md,
     paddingVertical: 10,
     paddingHorizontal: 12,
     marginBottom: 4,
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
   },
   countBadge: {
     backgroundColor: colors.brandPrimaryActive,
-    borderRadius: 999,
+    borderRadius: radii.full,
     minWidth: 28,
     paddingHorizontal: 8,
     paddingVertical: 2,
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
   teamItem: {
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: radii.md,
     paddingVertical: 8,
     paddingHorizontal: 12,
     marginBottom: 4,
@@ -235,7 +236,7 @@ const styles = StyleSheet.create({
   teamInitial: {
     width: 24,
     height: 24,
-    borderRadius: 6,
+    borderRadius: radii.sm,
     backgroundColor: colors.brandPrimaryActive,
     alignItems: "center",
     justifyContent: "center",
@@ -267,7 +268,7 @@ const styles = StyleSheet.create({
   profileAvatar: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: radii.full,
     marginRight: 12,
     backgroundColor: colors.brandPrimaryActive,
   },

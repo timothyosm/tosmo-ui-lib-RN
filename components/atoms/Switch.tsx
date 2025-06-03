@@ -1,4 +1,5 @@
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import React from "react";
 import { Platform, Pressable, StyleSheet, View } from "react-native";
 import { CheckIcon, XMarkIcon } from "react-native-heroicons/solid";
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   switch: {
     width: 44,
     height: 24,
-    borderRadius: 12,
+    borderRadius: radii.full,
     backgroundColor: colors.surfaceSubtle,
     justifyContent: "center",
     padding: 2,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   thumb: {
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: radii.full,
     backgroundColor: colors.surfaceBackground,
     justifyContent: "center",
     alignItems: "center",

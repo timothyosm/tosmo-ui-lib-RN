@@ -1,5 +1,6 @@
 // A reusable Button atom for React Native Expo using Pressable and react-native-heroicons
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import type { ReactNode } from "react";
 import React from "react";
 import { Pressable, Text, TextStyle, View, ViewStyle } from "react-native";
@@ -34,31 +35,31 @@ const sizeStyles: Record<
   xs: {
     paddingVertical: 4,
     paddingHorizontal: 8,
-    borderRadius: 4,
+    borderRadius: radii.sm,
     fontSize: 12,
   },
   sm: {
     paddingVertical: 4,
     paddingHorizontal: 8,
-    borderRadius: 4,
+    borderRadius: radii.sm,
     fontSize: 14,
   },
   md: {
     paddingVertical: 6,
     paddingHorizontal: 12,
-    borderRadius: 6,
+    borderRadius: radii.md,
     fontSize: 16,
   },
   lg: {
     paddingVertical: 8,
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: radii.lg,
     fontSize: 16,
   },
   xl: {
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 8,
+    borderRadius: radii.lg,
     fontSize: 16,
   },
 };
@@ -120,7 +121,7 @@ export const Button: React.FC<ButtonProps> = ({
             : pressed
             ? colors.brandPrimaryActive
             : v.backgroundColor,
-          borderRadius: isCircular ? 999 : s.borderRadius,
+          borderRadius: isCircular ? radii.full : s.borderRadius,
           paddingVertical: isCircular ? 0 : s.paddingVertical,
           paddingHorizontal: isCircular ? 0 : s.paddingHorizontal,
           width: isCircular ? circularSize : undefined,

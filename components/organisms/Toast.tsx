@@ -1,4 +1,5 @@
 import { lightColors as colors } from "@/theme/colors";
+import { radii } from "@/theme/radii";
 import React, { useState } from "react";
 import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
 import { CheckIcon, XCircleIcon } from "react-native-heroicons/outline";
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
     backgroundColor: colors.surfaceBackground,
-    borderRadius: 12,
+    borderRadius: radii.lg,
     padding: 16,
     minWidth: 280,
     maxWidth: 360,
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
   closeButton: {
     marginLeft: 12,
     padding: 4,
-    borderRadius: 6,
+    borderRadius: radii.sm,
     backgroundColor: colors.surfaceBackground,
     alignSelf: "flex-start",
   },
