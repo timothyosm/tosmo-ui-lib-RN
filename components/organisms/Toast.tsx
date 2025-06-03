@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React, { useState } from "react";
 import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
 import { CheckIcon, XCircleIcon } from "react-native-heroicons/outline";
@@ -14,10 +15,10 @@ interface ToastProps {
 
 const statusConfig = {
   success: {
-    icon: <CheckIcon size={24} color="#22c55e" />, // green
+    icon: <CheckIcon size={24} color={colors.success} />, // green
   },
   error: {
-    icon: <XCircleIcon size={24} color="#ef4444" />, // red
+    icon: <XCircleIcon size={24} color={colors.danger} />, // red
   },
 };
 
@@ -82,16 +83,11 @@ const styles = StyleSheet.create({
   toastPanel: {
     flexDirection: "row",
     alignItems: "flex-start",
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     borderRadius: 12,
     padding: 16,
     minWidth: 280,
     maxWidth: 360,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 5,
   },
   iconWrapper: {
     marginTop: 2,
@@ -103,23 +99,23 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: "600",
-    color: "#111827",
+    color: colors.textPrimary,
   },
   description: {
     fontSize: 13,
-    color: "#6b7280",
+    color: colors.textSecondary,
     marginTop: 2,
   },
   closeButton: {
     marginLeft: 12,
     padding: 4,
     borderRadius: 6,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     alignSelf: "flex-start",
   },
   closeIcon: {
     fontSize: 20,
-    color: "#9ca3af",
+    color: colors.textMuted,
     fontWeight: "bold",
     lineHeight: 20,
   },

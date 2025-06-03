@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   monthTitle: {
     fontSize: 15,
     fontWeight: "600",
-    color: "#111827",
+    color: colors.textPrimary,
     marginBottom: 8,
   },
   weekdaysRow: {
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
   },
   weekday: {
     fontSize: 13,
-    color: "#6b7280",
+    color: colors.textSecondary,
     flex: 1,
     textAlign: "center",
     minWidth: 32,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   daysGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    backgroundColor: "#e5e7eb",
+    backgroundColor: colors.borderDefault,
     borderRadius: 8,
     overflow: "hidden",
     width: "100%",
@@ -186,15 +187,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 0,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     margin: 0,
     padding: 0,
   },
   dayCurrentMonth: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
   },
   dayOtherMonth: {
-    backgroundColor: "#f3f4f6",
+    backgroundColor: colors.surfaceSubtle,
   },
   dayTopLeft: {
     borderTopLeftRadius: 8,
@@ -216,15 +217,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   dayToday: {
-    backgroundColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
   },
   dayText: {
     fontSize: 15,
-    color: "#111827",
+    color: colors.textPrimary,
     fontWeight: "500",
   },
   dayTodayText: {
-    color: "#fff",
+    color: colors.textInverse,
     fontWeight: "700",
   },
 });

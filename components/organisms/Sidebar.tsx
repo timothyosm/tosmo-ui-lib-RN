@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import type { ReactNode } from "react";
 import React from "react";
 import {
@@ -46,21 +47,14 @@ function classNames(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
-  navigation,
-  teams = [],
-  profile,
-  style,
-  headerLogoUrl = "https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white",
-  headerLogoAlt = "Your Company",
-  children,
-}) => {
+const Sidebar: React.FC<SidebarProps> = (props) => {
+  const teams = props.teams || [];
   return (
-    <View style={[styles.sidebar, style]}>
+    <View style={[styles.sidebar, props.style]}>
       <View style={styles.header}>
         <Image
-          source={{ uri: headerLogoUrl }}
-          accessibilityLabel={headerLogoAlt}
+          source={{ uri: props.headerLogoUrl }}
+          accessibilityLabel={props.headerLogoAlt}
           style={styles.logo}
         />
       </View>
@@ -69,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         showsVerticalScrollIndicator={false}
       >
         <View>
-          {navigation.map((item) => {
+          {props.navigation.map((item) => {
             const Icon = item.icon;
             return (
               <Pressable
@@ -84,7 +78,11 @@ const Sidebar: React.FC<SidebarProps> = ({
                 accessibilityState={{ selected: !!item.current }}
               >
                 <Icon
-                  color={item.current ? "#fff" : "#c7d2fe"}
+                  color={
+                    item.current
+                      ? colors.textInverse
+                      : colors.brandPrimarySubtle
+                  }
                   size={24}
                   style={{ marginRight: 8 }}
                 />
@@ -125,11 +123,11 @@ const Sidebar: React.FC<SidebarProps> = ({
             ))}
           </View>
         )}
-        {children}
+        {props.children}
       </ScrollView>
-      {profile && (
+      {props.profile && (
         <Pressable
-          onPress={profile.onPress}
+          onPress={props.profile.onPress}
           style={({ pressed }) => [
             styles.profile,
             pressed && styles.profilePressed,
@@ -137,10 +135,10 @@ const Sidebar: React.FC<SidebarProps> = ({
           accessibilityRole="button"
         >
           <Image
-            source={{ uri: profile.avatarUrl }}
+            source={{ uri: props.profile.avatarUrl }}
             style={styles.profileAvatar}
           />
-          <Text style={styles.profileName}>{profile.name}</Text>
+          <Text style={styles.profileName}>{props.profile.name}</Text>
         </Pressable>
       )}
     </View>
@@ -150,7 +148,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 const styles = StyleSheet.create({
   sidebar: {
     flex: 1,
-    backgroundColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
     paddingVertical: 0,
     paddingHorizontal: 0,
   },
@@ -158,7 +156,7 @@ const styles = StyleSheet.create({
     height: 64,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
   },
   logo: {
     height: 32,
@@ -181,22 +179,22 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   navItemActive: {
-    backgroundColor: "#3730a3",
+    backgroundColor: colors.brandSecondary,
   },
   navItemPressed: {
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.brandPrimaryActive,
   },
   navText: {
-    color: "#c7d2fe",
+    color: colors.brandPrimarySubtle,
     fontSize: 16,
     fontWeight: "600",
     flex: 1,
   },
   navTextActive: {
-    color: "#fff",
+    color: colors.textInverse,
   },
   countBadge: {
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.brandPrimaryActive,
     borderRadius: 999,
     minWidth: 28,
     paddingHorizontal: 8,
@@ -206,7 +204,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   countText: {
-    color: "#fff",
+    color: colors.textInverse,
     fontSize: 12,
     fontWeight: "600",
   },
@@ -214,7 +212,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   teamsLabel: {
-    color: "#c7d2fe",
+    color: colors.brandPrimarySubtle,
     fontSize: 13,
     fontWeight: "700",
     marginBottom: 8,
@@ -229,29 +227,29 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   teamItemActive: {
-    backgroundColor: "#3730a3",
+    backgroundColor: colors.brandSecondary,
   },
   teamItemPressed: {
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.brandPrimaryActive,
   },
   teamInitial: {
     width: 24,
     height: 24,
     borderRadius: 6,
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.brandPrimaryActive,
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
     borderWidth: 1,
-    borderColor: "#818cf8",
+    borderColor: colors.borderAccent,
   },
   teamInitialText: {
-    color: "#fff",
+    color: colors.textInverse,
     fontSize: 12,
     fontWeight: "700",
   },
   teamName: {
-    color: "#fff",
+    color: colors.textInverse,
     fontSize: 15,
     fontWeight: "500",
   },
@@ -260,21 +258,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: "#6366f1",
-    backgroundColor: "#4f46e5",
+    borderTopColor: colors.brandPrimaryActive,
+    backgroundColor: colors.brandPrimary,
   },
   profilePressed: {
-    backgroundColor: "#3730a3",
+    backgroundColor: colors.brandSecondary,
   },
   profileAvatar: {
     width: 32,
     height: 32,
     borderRadius: 16,
     marginRight: 12,
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.brandPrimaryActive,
   },
   profileName: {
-    color: "#fff",
+    color: colors.textInverse,
     fontSize: 15,
     fontWeight: "600",
   },

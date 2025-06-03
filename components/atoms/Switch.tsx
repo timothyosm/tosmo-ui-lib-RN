@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import { Platform, Pressable, StyleSheet, View } from "react-native";
 import { CheckIcon, XMarkIcon } from "react-native-heroicons/solid";
@@ -23,9 +24,9 @@ const CustomSwitch: React.FC<SwitchProps> = ({
     >
       <View style={[styles.thumb, value && styles.thumbChecked]}>
         {value ? (
-          <CheckIcon color="#4f46e5" size={14} />
+          <CheckIcon color={colors.brandPrimary} size={14} />
         ) : (
-          <XMarkIcon color="#9ca3af" size={14} />
+          <XMarkIcon color={colors.textMuted} size={14} />
         )}
       </View>
     </Pressable>
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "#e5e7eb",
+    backgroundColor: colors.surfaceSubtle,
     justifyContent: "center",
     padding: 2,
     borderWidth: 2,
@@ -47,13 +48,13 @@ const styles = StyleSheet.create({
     }),
   },
   switchChecked: {
-    backgroundColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
   },
   thumb: {
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",

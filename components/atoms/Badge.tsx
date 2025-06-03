@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import { StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 
@@ -10,7 +11,7 @@ export type BadgeProps = {
 
 const Badge: React.FC<BadgeProps> = ({
   label,
-  color = "#ef4444",
+  color = colors.danger,
   style,
   textStyle,
 }) => (
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderWidth: 1,
-    borderColor: "#e5e7eb", // ring-gray-200
+    borderColor: colors.borderDefault, // ring-gray-200
     backgroundColor: "transparent",
   },
   dot: {
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     fontWeight: "500",
-    color: "#111827", // text-gray-900
+    color: colors.textPrimary, // text-gray-900
   },
 });
 

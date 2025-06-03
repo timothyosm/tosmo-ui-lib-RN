@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CheckIcon } from "react-native-heroicons/solid";
@@ -39,7 +40,9 @@ const CheckboxList: React.FC<CheckboxListProps> = ({
               onPress={() => handleToggle(item.id)}
               style={[styles.checkbox, item.selected && styles.checkboxChecked]}
             >
-              {item.selected && <CheckIcon color="#fff" size={18} />}
+              {item.selected && (
+                <CheckIcon color={colors.textInverse} size={18} />
+              )}
             </Pressable>
           </View>
         ))}
@@ -50,12 +53,12 @@ const CheckboxList: React.FC<CheckboxListProps> = ({
 
 const styles = StyleSheet.create({
   container: { gap: 8 },
-  label: { fontWeight: "600", fontSize: 16, color: "#111" },
+  label: { fontWeight: "600", fontSize: 16, color: colors.textPrimary },
   listContainer: {
     marginTop: 12,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: "#e5e7eb",
+    borderColor: colors.borderDefault,
   },
   row: {
     flexDirection: "row",
@@ -63,22 +66,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderColor: "#e5e7eb",
+    borderColor: colors.borderDefault,
   },
-  name: { fontSize: 15, color: "#111", flex: 1 },
+  name: { fontSize: 15, color: colors.textPrimary, flex: 1 },
   checkbox: {
     width: 24,
     height: 24,
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: "#d1d5db",
-    backgroundColor: "#fff",
+    borderColor: colors.borderStrong,
+    backgroundColor: colors.surfaceBackground,
     alignItems: "center",
     justifyContent: "center",
   },
   checkboxChecked: {
-    backgroundColor: "#4f46e5",
-    borderColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
+    borderColor: colors.brandPrimary,
   },
 });
 

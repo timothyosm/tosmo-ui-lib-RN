@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import {
   StyleSheet,
@@ -51,7 +52,9 @@ const Input: React.FC<InputProps> = ({
             disabled && styles.inputDisabled,
             inputStyle,
           ]}
-          placeholderTextColor={showError ? "#fca5a5" : "#9ca3af"}
+          placeholderTextColor={
+            showError ? colors.placeholderError : colors.placeholder
+          }
           editable={!disabled}
           accessibilityLabel={hiddenLabel ? label : undefined}
           {...props}
@@ -59,7 +62,7 @@ const Input: React.FC<InputProps> = ({
         {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
         {showError && !rightIcon && (
           <View style={styles.rightIcon}>
-            <ExclamationCircleIcon color="#ef4444" size={20} />
+            <ExclamationCircleIcon color={colors.danger} size={20} />
           </View>
         )}
       </View>
@@ -79,11 +82,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: "500",
-    color: "#111827",
+    color: colors.textPrimary,
     marginBottom: 4,
   },
   labelDisabled: {
-    color: "#9ca3af",
+    color: colors.textMuted,
   },
   inputWrapper: {
     position: "relative",
@@ -104,30 +107,30 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 44,
     borderRadius: 8,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     paddingHorizontal: 12,
     fontSize: 16,
-    color: "#111827",
+    color: colors.textPrimary,
     borderWidth: 1,
-    borderColor: "#d1d5db",
+    borderColor: colors.borderStrong,
   },
   inputError: {
-    borderColor: "#ef4444",
-    color: "#b91c1c",
+    borderColor: colors.danger,
+    color: colors.textDanger,
   },
   inputDisabled: {
-    backgroundColor: "#f3f4f6",
-    color: "#9ca3af",
-    borderColor: "#e5e7eb",
+    backgroundColor: colors.surfaceSubtle,
+    color: colors.textMuted,
+    borderColor: colors.borderDefault,
   },
   helpText: {
     fontSize: 12,
-    color: "#6b7280",
+    color: colors.textSecondary,
     marginTop: 4,
   },
   errorText: {
     fontSize: 12,
-    color: "#ef4444",
+    color: colors.danger,
     marginTop: 4,
   },
 });

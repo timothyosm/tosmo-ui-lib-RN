@@ -1,4 +1,5 @@
 // A reusable Button atom for React Native Expo using Pressable and react-native-heroicons
+import { lightColors as colors } from "@/theme/colors";
 import type { ReactNode } from "react";
 import React from "react";
 import { Pressable, Text, TextStyle, View, ViewStyle } from "react-native";
@@ -72,16 +73,16 @@ const variantStyles: Record<
   }
 > = {
   filled: {
-    backgroundColor: "#4F46E5", // indigo-600
+    backgroundColor: colors.brandPrimary, // indigo-600
     borderWidth: 0,
     borderColor: "transparent",
-    textColor: "#fff",
+    textColor: colors.textInverse,
   },
   outline: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     borderWidth: 1,
-    borderColor: "#D1D5DB", // gray-300
-    textColor: "#111827", // gray-900
+    borderColor: colors.borderStrong, // gray-300
+    textColor: colors.textPrimary, // gray-900
   },
 };
 
@@ -115,10 +116,10 @@ export const Button: React.FC<ButtonProps> = ({
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: disabled
-            ? "#A5B4FC"
+            ? colors.brandPrimarySubtle
             : pressed
-            ? "#6366F1"
-            : v.backgroundColor, // indigo-500 on press
+            ? colors.brandPrimaryActive
+            : v.backgroundColor,
           borderRadius: isCircular ? 999 : s.borderRadius,
           paddingVertical: isCircular ? 0 : s.paddingVertical,
           paddingHorizontal: isCircular ? 0 : s.paddingHorizontal,
@@ -128,10 +129,6 @@ export const Button: React.FC<ButtonProps> = ({
           borderWidth: v.borderWidth,
           borderColor: v.borderColor,
           opacity: disabled ? 0.7 : 1,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 1 },
-          shadowOpacity: 0.08,
-          shadowRadius: 1,
         },
         style,
       ]}

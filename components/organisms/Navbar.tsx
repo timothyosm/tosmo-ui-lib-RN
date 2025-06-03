@@ -2,8 +2,10 @@ import Sidebar, {
   SidebarNavItem,
   SidebarTeam,
 } from "@/components/organisms/Sidebar";
+import { useSidebarStore } from "@/store/sidebar";
+import { lightColors as colors } from "@/theme/colors";
 import type { ReactNode } from "react";
-import React, { useState } from "react";
+import React from "react";
 import {
   Animated,
   Dimensions,
@@ -44,18 +46,18 @@ const Navbar: React.FC<NavbarProps> = ({
   style,
   children,
 }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { open, openSidebar, closeSidebar, toggleSidebar } = useSidebarStore();
   const sidebarAnim = React.useRef(
     new Animated.Value(-SCREEN_WIDTH * 0.8)
   ).current;
 
   React.useEffect(() => {
     Animated.timing(sidebarAnim, {
-      toValue: sidebarOpen ? 0 : -SCREEN_WIDTH * 0.8,
+      toValue: open ? 0 : -SCREEN_WIDTH * 0.8,
       duration: 250,
       useNativeDriver: true,
     }).start();
-  }, [sidebarOpen]);
+  }, [open]);
 
   return (
     <SafeAreaView
@@ -64,8 +66,8 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <View style={styles.navbar}>
         {/* Sidebar overlay for mobile */}
-        {sidebarOpen && (
-          <TouchableWithoutFeedback onPress={() => setSidebarOpen(false)}>
+        {open && (
+          <TouchableWithoutFeedback onPress={closeSidebar}>
             <View style={styles.overlay} />
           </TouchableWithoutFeedback>
         )}
@@ -74,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({
             styles.animatedSidebar,
             { transform: [{ translateX: sidebarAnim }] },
           ]}
-          pointerEvents={sidebarOpen ? "auto" : "none"}
+          pointerEvents={open ? "auto" : "none"}
         >
           <Sidebar
             navigation={navigation}
@@ -86,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <View style={styles.right}>
           <View style={styles.topBar}>
             <Pressable
-              onPress={() => setSidebarOpen((open) => !open)}
+              onPress={toggleSidebar}
               style={({ pressed }) => [
                 styles.hamburgerBtn,
                 pressed && { opacity: 0.7 },
@@ -94,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({
               accessibilityRole="button"
               accessibilityLabel="Open sidebar menu"
             >
-              <Bars3Icon color="#4f46e5" size={28} />
+              <Bars3Icon color={colors.brandPrimary} size={28} />
             </Pressable>
             <View style={styles.logoWrap}>
               <Image
@@ -119,7 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   accessibilityRole="button"
                   accessibilityLabel="View notifications"
                 >
-                  <BellIcon color="#4f46e5" size={24} />
+                  <BellIcon color={colors.brandPrimary} size={24} />
                   {notificationCount > 0 && (
                     <View style={styles.notificationDot} />
                   )}
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     height: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     flex: 1,
   },
   animatedSidebar: {
@@ -171,12 +173,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: SCREEN_WIDTH * 0.8,
     zIndex: 20,
-    backgroundColor: "#4f46e5",
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 0 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 8,
+    backgroundColor: colors.brandPrimary,
   },
   overlay: {
     position: "absolute",
@@ -190,7 +187,7 @@ const styles = StyleSheet.create({
   right: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     zIndex: 1,
   },
   topBar: {
@@ -200,14 +197,14 @@ const styles = StyleSheet.create({
     height: 64,
     paddingHorizontal: 24,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#e5e7eb",
-    backgroundColor: "#fff",
+    borderBottomColor: colors.borderDefault,
+    backgroundColor: colors.surfaceBackground,
   },
   hamburgerBtn: {
     marginRight: 16,
     padding: 8,
     borderRadius: 999,
-    backgroundColor: "#f3f4f6",
+    backgroundColor: colors.surfaceSubtle,
   },
   logoWrap: {
     flexDirection: "row",
@@ -223,30 +220,30 @@ const styles = StyleSheet.create({
   companyName: {
     fontSize: 18,
     fontWeight: "700",
-    color: "#4f46e5",
+    color: colors.brandPrimary,
   },
   bellBtn: {
     marginLeft: 16,
     padding: 8,
     borderRadius: 999,
-    backgroundColor: "#f3f4f6",
+    backgroundColor: colors.surfaceSubtle,
   },
   profileBtn: {
     marginLeft: 16,
     padding: 2,
     borderRadius: 999,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
   },
   profileAvatar: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: "#6366f1",
+    backgroundColor: colors.brandPrimaryActive,
   },
   content: {
     flex: 1,
     padding: 24,
-    backgroundColor: "#f9fafb",
+    backgroundColor: colors.surfaceMuted,
   },
   notificationDot: {
     position: "absolute",
@@ -255,7 +252,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: "#ef4444",
+    backgroundColor: colors.danger,
     zIndex: 2,
   },
 });

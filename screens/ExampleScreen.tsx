@@ -7,9 +7,10 @@ import Card from "@/components/organisms/Card";
 import Dialog from "@/components/organisms/Dialog";
 import Navbar from "@/components/organisms/Navbar";
 import { SidebarNavItem, SidebarTeam } from "@/components/organisms/Sidebar";
-import Toast from "@/components/organisms/Toast";
 import { useCheckboxListExample } from "@/hooks/useCheckboxListExample";
 import { useRadioListExample } from "@/hooks/useRadioListExample";
+import { useToastStore } from "@/store/toast";
+import { lightColors as colors } from "@/theme/colors";
 import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import {
@@ -147,16 +148,14 @@ const ExampleScreen: React.FC = () => {
     "day" | "week" | "month" | "year"
   >("year");
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const { showToast } = useToastStore();
 
   return (
     <Navbar navigation={sidebarNavigation} style={{ flex: 1 }}>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
-          justifyContent: "center",
-          alignItems: "center",
           gap: 16,
-          backgroundColor: "#F3F4F6",
         }}
         keyboardShouldPersistTaps="handled"
       >
@@ -169,7 +168,7 @@ const ExampleScreen: React.FC = () => {
           <Input
             label="Email"
             placeholder="you@example.com"
-            leftIcon={<EnvelopeIcon color="#9ca3af" size={20} />}
+            leftIcon={<EnvelopeIcon color={colors.textMuted} size={20} />}
           />
           <Input
             label="Email"
@@ -184,7 +183,7 @@ const ExampleScreen: React.FC = () => {
             <Text style={{ fontWeight: "bold", fontSize: 18 }}>Header</Text>
           }
           body={<Text>This is the body content of the card.</Text>}
-          footer={<Text style={{ color: "#6B7280" }}>Footer</Text>}
+          footer={<Text style={{ color: colors.textSecondary }}>Footer</Text>}
           style={{ width: 320, marginBottom: 24 }}
         />
         {/* Badge Examples */}
@@ -196,9 +195,9 @@ const ExampleScreen: React.FC = () => {
             marginBottom: 24,
           }}
         >
-          <Badge label="Error" color="#ef4444" />
-          <Badge label="Success" color="#22c55e" />
-          <Badge label="Info" color="#3b82f6" />
+          <Badge label="Error" color={colors.danger} />
+          <Badge label="Success" color={colors.success} />
+          <Badge label="Info" color={colors.info} />
         </View>
         <Button size="lg" onPress={() => setDialogVisible(true)}>
           Primary Button
@@ -219,10 +218,9 @@ const ExampleScreen: React.FC = () => {
         </Button>
         <Button
           shape="circular"
-          leftIcon={<PlusIcon color="#fff" size={24} />}
+          leftIcon={<PlusIcon color={colors.textInverse} size={24} />}
           size="lg"
         >
-          {/* Icon only */}
           <Text style={{ width: 0, height: 0 }} />
         </Button>
         {/* Dialog Example */}
@@ -236,13 +234,6 @@ const ExampleScreen: React.FC = () => {
           secondaryActionLabel="Cancel"
           onSecondaryAction={() => setDialogVisible(false)}
           onClose={() => setDialogVisible(false)}
-        />
-        <Toast
-          show={toast.show}
-          status={toast.status}
-          title={toast.title}
-          description={toast.description}
-          onClose={() => setToast((t) => ({ ...t, show: false }))}
         />
         {/* Switch Example */}
         <View style={{ width: 320, marginBottom: 32 }}>
@@ -263,11 +254,39 @@ const ExampleScreen: React.FC = () => {
             style={{ maxWidth: 900, width: "100%" }}
           />
           {selectedDate && (
-            <Text style={{ marginTop: 8, color: "#4f46e5" }}>
+            <Text style={{ marginTop: 8, color: colors.brandPrimary }}>
               Selected date: {selectedDate}
             </Text>
           )}
         </View>
+        <Button
+          size="lg"
+          variant="filled"
+          onPress={() =>
+            showToast({
+              status: "success",
+              title: "Success!",
+              description: "This is a global toast.",
+            })
+          }
+          style={{ marginBottom: 16 }}
+        >
+          Show Success Toast
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          onPress={() =>
+            showToast({
+              status: "error",
+              title: "Error!",
+              description: "Something went wrong.",
+            })
+          }
+          style={{ marginBottom: 16 }}
+        >
+          Show Error Toast
+        </Button>
       </ScrollView>
     </Navbar>
   );

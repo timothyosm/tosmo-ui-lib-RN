@@ -1,3 +1,5 @@
+import { useDialogStore } from "@/store/dialog";
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import {
@@ -20,42 +22,47 @@ interface DialogProps {
 
 const statusConfig = {
   success: {
-    icon: <CheckIcon size={32} color="#22c55e" />,
-    bg: "#bbf7d0",
+    icon: <CheckIcon size={32} color={colors.success} />,
+    bg: colors.successBg,
   },
   error: {
-    icon: <XCircleIcon size={32} color="#ef4444" />,
-    bg: "#fecaca",
+    icon: <XCircleIcon size={32} color={colors.danger} />,
+    bg: colors.dangerBg,
   },
   warning: {
-    icon: <ExclamationTriangleIcon size={32} color="#facc15" />,
-    bg: "#fef08a",
+    icon: <ExclamationTriangleIcon size={32} color={colors.warning} />,
+    bg: colors.warningBg,
   },
 };
 
-const Dialog: React.FC<DialogProps> = ({
-  visible,
-  title,
-  description,
-  onClose,
-  primaryActionLabel = "OK",
-  onPrimaryAction,
-  secondaryActionLabel,
-  onSecondaryAction,
-  status = "success",
-}) => {
-  const { icon, bg } = statusConfig[status];
+const Dialog: React.FC<Partial<DialogProps>> = (props) => {
+  const {
+    visible,
+    status,
+    title,
+    description,
+    primaryActionLabel,
+    onPrimaryAction,
+    secondaryActionLabel,
+    onSecondaryAction,
+    hideDialog,
+  } = useDialogStore();
+
+  if (!visible) return null;
+
+  const { icon, bg } = statusConfig[status || "success"];
   return (
     <Modal
       visible={visible}
       transparent
       animationType="fade"
-      onRequestClose={onClose}
+      onRequestClose={hideDialog}
     >
       <View style={styles.backdrop}>
         <View style={styles.panel}>
           <View style={[styles.iconWrapper, { backgroundColor: bg }]}>
-            {icon}
+            {" "}
+            {icon}{" "}
           </View>
           <Text style={styles.title}>{title}</Text>
           {!!description && (
@@ -65,7 +72,7 @@ const Dialog: React.FC<DialogProps> = ({
             {secondaryActionLabel && (
               <Pressable
                 style={[styles.button, styles.secondaryButton]}
-                onPress={onSecondaryAction || onClose}
+                onPress={onSecondaryAction || hideDialog}
               >
                 <Text style={styles.secondaryButtonText}>
                   {secondaryActionLabel}
@@ -74,9 +81,11 @@ const Dialog: React.FC<DialogProps> = ({
             )}
             <Pressable
               style={[styles.button, styles.primaryButton]}
-              onPress={onPrimaryAction || onClose}
+              onPress={onPrimaryAction || hideDialog}
             >
-              <Text style={styles.primaryButtonText}>{primaryActionLabel}</Text>
+              <Text style={styles.primaryButtonText}>
+                {primaryActionLabel || "OK"}
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -88,21 +97,16 @@ const Dialog: React.FC<DialogProps> = ({
 const styles = StyleSheet.create({
   backdrop: {
     flex: 1,
-    backgroundColor: "rgba(55, 65, 81, 0.75)",
+    backgroundColor: colors.overlay,
     justifyContent: "center",
     alignItems: "center",
   },
   panel: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     borderRadius: 16,
     padding: 24,
     width: "85%",
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 5,
   },
   iconWrapper: {
     borderRadius: 999,
@@ -112,13 +116,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#111827",
+    color: colors.textPrimary,
     textAlign: "center",
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: "#6b7280",
+    color: colors.textSecondary,
     textAlign: "center",
     marginBottom: 20,
   },
@@ -135,21 +139,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   primaryButton: {
-    backgroundColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
   },
   primaryButtonText: {
-    color: "#fff",
+    color: colors.textInverse,
     fontWeight: "600",
     fontSize: 16,
   },
   secondaryButton: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.surfaceBackground,
     borderWidth: 1,
-    borderColor: "#d1d5db",
+    borderColor: colors.borderDefault,
     marginRight: 8,
   },
   secondaryButtonText: {
-    color: "#111827",
+    color: colors.textPrimary,
     fontWeight: "600",
     fontSize: 16,
   },

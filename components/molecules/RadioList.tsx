@@ -1,3 +1,4 @@
+import { lightColors as colors } from "@/theme/colors";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CheckIcon } from "react-native-heroicons/solid";
@@ -36,7 +37,9 @@ const RadioList: React.FC<RadioListProps> = ({
                 selectedId === item.id && styles.radioSelected,
               ]}
             >
-              {selectedId === item.id && <CheckIcon color="#fff" size={16} />}
+              {selectedId === item.id && (
+                <CheckIcon color={colors.textInverse} size={16} />
+              )}
             </Pressable>
           </View>
         ))}
@@ -47,12 +50,12 @@ const RadioList: React.FC<RadioListProps> = ({
 
 const styles = StyleSheet.create({
   container: { gap: 8 },
-  label: { fontWeight: "600", fontSize: 16, color: "#111" },
+  label: { fontWeight: "600", fontSize: 16, color: colors.textPrimary },
   listContainer: {
     marginTop: 12,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: "#e5e7eb",
+    borderColor: colors.borderDefault,
   },
   row: {
     flexDirection: "row",
@@ -60,22 +63,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderColor: "#e5e7eb",
+    borderColor: colors.borderDefault,
   },
-  name: { fontSize: 15, color: "#111", flex: 1 },
+  name: { fontSize: 15, color: colors.textPrimary, flex: 1 },
   radio: {
     width: 24,
     height: 24,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: "#d1d5db",
-    backgroundColor: "#fff",
+    borderColor: colors.borderStrong,
+    backgroundColor: colors.surfaceBackground,
     alignItems: "center",
     justifyContent: "center",
   },
   radioSelected: {
-    backgroundColor: "#4f46e5",
-    borderColor: "#4f46e5",
+    backgroundColor: colors.brandPrimary,
+    borderColor: colors.brandPrimary,
   },
 });
 
